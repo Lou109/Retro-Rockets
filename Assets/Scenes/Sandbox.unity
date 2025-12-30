@@ -312,6 +312,63 @@ MonoBehaviour:
       m_Action: Thrust
       m_Flags: 0
     m_Flags: 0
+  rotation:
+    m_Name: Rotation
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 04636156-eb58-4302-b600-b1ababa11df4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: Keyboard
+      m_Id: 622ad4d9-13f9-4ea9-8e6b-9f885d59c65f
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 2ec3e5ca-3568-4fdf-b6b5-489373992bd0
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 5fbefc23-bdd4-4e2a-b618-1550be8bc9f1
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    - m_Name: Gamepad
+      m_Id: 1a48aba5-f98b-4f09-bf01-626b09efb450
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 5f46f770-68e2-4851-bcbd-d8ce9bbe5d92
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: ab67dd92-4f2f-490e-bf9c-c4da05f26703
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotation
+      m_Flags: 8
+    m_Flags: 0
   thrustStrength: 1000
 --- !u!4 &373362747
 Transform:
