@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -18,9 +19,15 @@ public class CollisionHandler : MonoBehaviour
             case "Finish":
                 Debug.Log("You won this level!");
                 break;
-            default:
-                Debug.Log("You hit something dangerous!");
+            default:    
+                ReloadLevel();
                 break;
         }
+    }
+
+    void ReloadLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 }
