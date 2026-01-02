@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 6f86c34ae85b73944b67468ca1680b59
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Colour_Palette_Sci_Fi_Roughness
-    second: {fileID: 7515526912956163633, guid: eec6e35c3e07f9b47b15e9841f7b8047, type: 3}
+    second: {fileID: 8443986690989818273, guid: 266abda2514f6d14e94e942dbc17504a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -66,6 +66,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
