@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    float crashTimeDelay = 3f;
+    float levelLoadDelay = 2f;
+
     private void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag) 
@@ -13,21 +17,29 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("This thing is friendly");
                 break;
             case "Finish":
-                ReloadNextLevel();
+                StartSuccessSequence();
                 break;
-            default:    
-                ReloadLevel();
+            default: 
+                StartCrashSequence();   
                 break;
         }
     }
 
-    void ReloadLevel()
+    void StartSuccessSequence()
     {
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene);
+        //to do add sfx and particles
+        GetComponent<Movement>().enabled = false;
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
-    void ReloadNextLevel()
+    void StartCrashSequence()
+    {
+        // to do add sfx and particles
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadLevel", crashTimeDelay);
+    }
+
+    void LoadNextLevel()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int nextScene = currentScene + 1;
@@ -37,4 +49,10 @@ public class CollisionHandler : MonoBehaviour
         }
         SceneManager.LoadScene(nextScene);
     }
+
+    void ReloadLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }   
 }
