@@ -4900,7 +4900,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: aa620c50-5f8c-4ff7-99af-6ff527caa00a
-      m_Path: <Keyboard>/w
+      m_Path: <Keyboard>/space
       m_Interactions: 
       m_Processors: 
       m_Groups: 
