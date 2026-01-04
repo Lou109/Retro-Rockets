@@ -1070,8 +1070,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5ec16a50f264d09a5cba42aba4de52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionHandler
+  levelLoadDelay: 2
+  crashTimeDelay: 3
   crashSound: {fileID: 8300000, guid: 3e203cdae797d4549bf3bedef4540363, type: 3}
   successSound: {fileID: 8300000, guid: 2d5b41036621243589aff908f3290f9d, type: 3}
+  successParticles: {fileID: 6957836432480092024}
+  crashParticles: {fileID: 6957836432480092023}
 --- !u!1001 &1665897140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1358,6 +1362,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1652565870}
   m_SourcePrefab: {fileID: 100100000, guid: e9bfa4d2c45654334ae48a7967b74cb6, type: 3}
+--- !u!198 &6957836432480092023 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5091134263383619798, guid: e9bfa4d2c45654334ae48a7967b74cb6, type: 3}
+  m_PrefabInstance: {fileID: 6957836432480092022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6957836432480092024 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5305202896225150272, guid: e9bfa4d2c45654334ae48a7967b74cb6, type: 3}
+  m_PrefabInstance: {fileID: 6957836432480092022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
