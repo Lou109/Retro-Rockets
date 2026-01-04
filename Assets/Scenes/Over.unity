@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 105615479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.448544, y: 2.5469894, z: -15}
+  m_LocalPosition: {x: -13.448544, y: 2.5699897, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.448544, y: 2.5469894, z: -15}
+  m_LocalPosition: {x: -13.448544, y: 2.5699897, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -742,6 +742,10 @@ PrefabInstance:
       value: Launch Pad (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4524717499939148284, guid: 25e9f779e1a034009b07d32002337d1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524717499939148284, guid: 25e9f779e1a034009b07d32002337d1b, type: 3}
       propertyPath: m_TagString
       value: Finish
       objectReference: {fileID: 0}
@@ -803,6 +807,10 @@ PrefabInstance:
       value: Launch Pad
       objectReference: {fileID: 0}
     - target: {fileID: 4524717499939148284, guid: 25e9f779e1a034009b07d32002337d1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524717499939148284, guid: 25e9f779e1a034009b07d32002337d1b, type: 3}
       propertyPath: m_TagString
       value: Friendly
       objectReference: {fileID: 0}
@@ -825,7 +833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 870855797929389248, guid: e9bfa4d2c45654334ae48a7967b74cb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.997
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 870855797929389248, guid: e9bfa4d2c45654334ae48a7967b74cb6, type: 3}
       propertyPath: m_LocalPosition.z
