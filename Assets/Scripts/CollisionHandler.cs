@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField]float crashTimeDelay = 3f;
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioClip successSound;
-
-    float crashTimeDelay = 3f;
-    float levelLoadDelay = 2f;
-
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
+    
     AudioSource audioSource;
    
-
     bool isControllable = true;
     void Start()
     {
@@ -43,6 +43,7 @@ public class CollisionHandler : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
+        successParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
     }
@@ -52,6 +53,7 @@ public class CollisionHandler : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
+        crashParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", crashTimeDelay);    
     }
