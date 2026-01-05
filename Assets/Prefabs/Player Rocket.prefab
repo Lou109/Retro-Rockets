@@ -4975,9 +4975,9 @@ MonoBehaviour:
   thrustStrength: 1000
   rotationStrength: 100
   mainEngine: {fileID: 8300000, guid: 39f3b734ec3ec4288b08ca359d3df06e, type: 3}
-  mainBooster: {fileID: 6627127064282552607}
-  leftBooster: {fileID: 4129757726870731816}
-  rightBooster: {fileID: 8415212675921081149}
+  mainEngineParticle: {fileID: 6627127064282552607}
+  leftThrustParticles: {fileID: 4129757726870731816}
+  rightThrustParticles: {fileID: 8415212675921081149}
 --- !u!54 &1026580811687253348
 Rigidbody:
   m_ObjectHideFlags: 0

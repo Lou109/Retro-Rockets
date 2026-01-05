@@ -9,9 +9,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float thrustStrength = 100f;
     [SerializeField] float rotationStrength = 100f;
     [SerializeField] AudioClip mainEngine;
-    [SerializeField] ParticleSystem mainBooster;
-    [SerializeField] ParticleSystem leftBooster;
-    [SerializeField] ParticleSystem rightBooster;
+    [SerializeField] ParticleSystem mainEngineParticle;
+    [SerializeField] ParticleSystem leftThrustParticles;
+    [SerializeField] ParticleSystem rightThrustParticles;
      
     Rigidbody rb;
     AudioSource audioSource;
@@ -38,21 +38,31 @@ public class Movement : MonoBehaviour
     {
         if (thrust.IsPressed())
         {
-            rb.AddRelativeForce(thrustStrength * Time.fixedDeltaTime * Vector3.up);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-            if (!mainBooster.isPlaying)
-            {
-                 mainBooster.Play();
-            }
-        }     
+            StartThrusting();
+        }
         else
         {
-            audioSource.Stop();
-            mainBooster.Stop();
+            StopThrusting();
         }
+    }
+
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(thrustStrength * Time.fixedDeltaTime * Vector3.up);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        if (!mainEngineParticle.isPlaying)
+        {
+            mainEngineParticle.Play();
+        }
+    }
+
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticle.Stop();
     }
 
     private void ProcessRotation()
@@ -60,29 +70,44 @@ public class Movement : MonoBehaviour
         float rotationInput = rotation.ReadValue<float>();
         if(rotationInput < 0)
         {
-            ApplyRotation(rotationStrength); 
-              
-            if (!leftBooster.isPlaying)
-            {
-                 rightBooster.Stop();
-                 leftBooster.Play();
-            }  
+           
+            RotateRight();
         }
-        
         else if(rotationInput > 0)
         {
-            ApplyRotation(-rotationStrength);
-             if (!rightBooster.isPlaying)
-            {
-                 leftBooster.Stop();
-                 rightBooster.Play();
-            }  
+            RotateLeft();
         }
         else
         {
-            rightBooster.Stop();
-            leftBooster.Stop();
+            StopRotating();
         }
+    }
+
+    private void RotateRight()
+    {
+        ApplyRotation(rotationStrength);
+        if (!leftThrustParticles.isPlaying)
+        {
+           
+            rightThrustParticles.Stop();
+            leftThrustParticles.Play();
+        }
+    }
+
+     private void RotateLeft()
+    {
+        ApplyRotation(-rotationStrength);
+        if (!rightThrustParticles.isPlaying)
+        {
+            leftThrustParticles.Stop();
+            rightThrustParticles.Play();
+        }
+    }
+
+    private void StopRotating()
+    {
+        rightThrustParticles.Stop();
+        leftThrustParticles.Stop();
     }
 
     private void ApplyRotation(float rotationThisFrame)
