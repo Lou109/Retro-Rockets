@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -17,6 +15,10 @@ public class CollisionHandler : MonoBehaviour
    
     bool isControllable = true;
     bool isCollidable = true;
+
+    const string TAG_FRIENDLY = "Friendly";
+    const string TAG_FINISH = "Finish";
+    const string TAG_OBSTACLE = "Obstacle";
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -41,21 +43,47 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!isControllable || !isCollidable) {return;}
+        HandleContact(other.gameObject, isTrigger: false);
+    }
 
-        switch (other.gameObject.tag) 
+    private void OnTriggerEnter(Collider other)
+    {
+        HandleContact(other.gameObject, isTrigger: true);
+    }
+
+    void HandleContact(GameObject otherObject, bool isTrigger)
+    {
+        if (!isControllable || !isCollidable)
         {
-            
-            case "Friendly":
-                Debug.Log("This thing is friendly");
-                break;
-            case "Finish":
-                StartSuccessSequence();
-                break;
-            default: 
-                StartCrashSequence();   
-                break;
+            return;
         }
+
+        // Prefer tags so level design stays simple.
+        if (otherObject.CompareTag(TAG_FRIENDLY))
+        {
+            // Friendly objects: landing pads, boundaries, etc.
+            return;
+        }
+
+        if (otherObject.CompareTag(TAG_FINISH))
+        {
+            StartSuccessSequence();
+            return;
+        }
+
+        if (isTrigger)
+        {
+            // Triggers are opt-in for crashing (so you don't crash on random trigger volumes).
+            if (otherObject.CompareTag(TAG_OBSTACLE))
+            {
+                StartCrashSequence();
+            }
+
+            return;
+        }
+
+        // Physical collisions with anything not Friendly/Finish count as crash.
+        StartCrashSequence();
     }
 
     void StartSuccessSequence()

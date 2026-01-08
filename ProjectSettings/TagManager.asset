@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Friendly
   - Fuel
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Player Boundaries
   - Water
   - UI
-  - 
+  - Asteroid
   - 
   - 
   - 
