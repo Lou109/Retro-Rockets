@@ -11,6 +11,16 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem crashParticles;
 
+    [Header("Crash VFX (optional prefab)")]
+    [Tooltip("If set, this prefab will be spawned at the rocket position on crash (use this for complex VFX packs like DAVFX).")]
+    [SerializeField] GameObject crashVfxPrefab;
+    [Tooltip("If > 0, the spawned VFX prefab will be destroyed after this many seconds.")]
+    [SerializeField] float crashVfxDestroyDelay = 5f;
+
+    [Header("Crash VFX spawn")]
+    [Tooltip("Optional: spawn transform used for the crash VFX (create an empty child at the rocket nose and assign it here).")]
+    [SerializeField] Transform crashVfxSpawnPoint;
+
     AudioSource audioSource;
    
     bool isControllable = true;
@@ -101,9 +111,57 @@ public class CollisionHandler : MonoBehaviour
         isControllable = false;
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
-        crashParticles.Play();
+        PlayCrashVfx();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", crashTimeDelay);    
+    }
+
+    void PlayCrashVfx()
+    {
+        if (crashVfxPrefab != null)
+        {
+            GetCrashVfxSpawnPose(out var spawnPos, out var spawnRot);
+            var instance = Instantiate(crashVfxPrefab, spawnPos, spawnRot);
+
+            // Force-play all child particle systems (handles complex prefabs and inactive children).
+            var particleSystems = instance.GetComponentsInChildren<ParticleSystem>(true);
+            for (int i = 0; i < particleSystems.Length; i++)
+            {
+                var ps = particleSystems[i];
+                ps.gameObject.SetActive(true);
+                ps.Play(true);
+            }
+
+            if (crashVfxDestroyDelay > 0f)
+            {
+                Destroy(instance, crashVfxDestroyDelay);
+            }
+
+            return;
+        }
+
+        if (crashParticles != null)
+        {
+            crashParticles.gameObject.SetActive(true);
+            crashParticles.Play(true);
+        }
+        else
+        {
+            Debug.LogWarning($"{nameof(CollisionHandler)}: No crash VFX assigned (set crashVfxPrefab or crashParticles).", this);
+        }
+    }
+
+    void GetCrashVfxSpawnPose(out Vector3 position, out Quaternion rotation)
+    {
+        if (crashVfxSpawnPoint != null)
+        {
+            position = crashVfxSpawnPoint.position;
+            rotation = crashVfxSpawnPoint.rotation;
+            return;
+        }
+
+        position = transform.position;
+        rotation = transform.rotation;
     }
 
     void LoadNextLevel()

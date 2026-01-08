@@ -5141,6 +5141,8 @@ MonoBehaviour:
   successSound: {fileID: 8300000, guid: 2d5b41036621243589aff908f3290f9d, type: 3}
   successParticles: {fileID: 5305202896225150272}
   crashParticles: {fileID: 5091134263383619798}
+  crashVfxPrefab: {fileID: 100100000, guid: 8e60d19b090b6d14eb7c9c924d83c95f, type: 3}
+  crashVfxDestroyDelay: 5
 --- !u!1 &3808307500306260665
 GameObject:
   m_ObjectHideFlags: 0
