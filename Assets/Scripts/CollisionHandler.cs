@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 2f;
@@ -32,6 +33,8 @@ public class CollisionHandler : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.pitch = 1f;
     }
 
     void Update()
@@ -99,20 +102,44 @@ public class CollisionHandler : MonoBehaviour
     void StartSuccessSequence()
     {
         isControllable = false;
+
+        var movement = GetComponent<Movement>();
+        if (movement != null)
+        {
+            movement.enabled = false;
+        }
+
+        if (successSound == null)
+        {
+            Debug.LogWarning($"{nameof(CollisionHandler)}: successSound is not assigned.", this);
+        }
+
         audioSource.Stop();
+        audioSource.loop = false;
         audioSource.PlayOneShot(successSound);
         successParticles.Play();
-        GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     void StartCrashSequence()
     {
         isControllable = false;
+
+        var movement = GetComponent<Movement>();
+        if (movement != null)
+        {
+            movement.enabled = false;
+        }
+
+        if (crashSound == null)
+        {
+            Debug.LogWarning($"{nameof(CollisionHandler)}: crashSound is not assigned (this is your death explosion SFX).", this);
+        }
+
         audioSource.Stop();
+        audioSource.loop = false;
         audioSource.PlayOneShot(crashSound);
         PlayCrashVfx();
-        GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", crashTimeDelay);    
     }
 
