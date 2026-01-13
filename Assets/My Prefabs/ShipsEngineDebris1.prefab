@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1412249027263874031
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 289.23
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.54
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      propertyPath: m_Name
+      value: ShipsEngineDebris1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1382025947484868414}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3206098859137522404}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 141339841646743657}
+  m_SourcePrefab: {fileID: 100100000, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+--- !u!1 &2258617695781617342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e05f6d10e5f10489cb43f974b5eb7337, type: 3}
+  m_PrefabInstance: {fileID: 1412249027263874031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1382025947484868414
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258617695781617342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.85994065
+  m_Center: {x: 0.00000008940697, y: 0, z: 0.25232226}
+--- !u!114 &3206098859137522404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258617695781617342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd059cd07c4a14b7aaa85f0aeca80ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RotateObjects
+  xSpeedRotate: 40
+  ySpeedRotate: 40
+  zSpeedRotate: 40
+--- !u!114 &141339841646743657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258617695781617342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e11817f2052473ebcce2afcf75ee94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CircularMotion
+  speed: 30
+  radius: 3
