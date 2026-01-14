@@ -13,15 +13,41 @@ public class Movement : MonoBehaviour
 
     [Header("Optional: soft boundary")]
     [SerializeField] BoxCollider movementBounds;
-    [Tooltip("Within this distance (world units) from a boundary face, thrust fades down to 0.")]
+    [Tooltip("Within this distance (world units) from an enabled boundary face, thrust fades down to 0.")]
     [SerializeField] float boundarySoftZoneDistance = 4f;
-    [Tooltip("Extra drag added near the boundary to help the rocket come to a smooth stop.")]
+    [Tooltip("If true, approaching the ceiling (max Y) reduces thrust/boost so you don't pin against the top boundary.")]
+    [SerializeField] bool softenCeiling = true;
+    [Tooltip("If true, approaching the side walls (min/max X/Z) reduces thrust. Leave false to avoid losing altitude when touching a wall.")]
+    [SerializeField] bool softenSideWalls = false;
+    [Tooltip("Extra drag added when near an enabled soft boundary to help the rocket come to a smooth stop.")]
     [SerializeField] float maxExtraDragNearBoundary = 2f;
      
     Rigidbody rb;
     AudioSource audioSource;
     float baseDrag;
     
+    void Awake()
+    {
+        EnsureHardBounds();
+    }
+
+    void EnsureHardBounds()
+    {
+        if (movementBounds == null)
+        {
+            return;
+        }
+
+        var clamp = GetComponent<BoundaryClamp>();
+        if (clamp == null)
+        {
+            clamp = gameObject.AddComponent<BoundaryClamp>();
+        }
+
+        clamp.SetBoundary(movementBounds);
+        clamp.enabled = true;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -145,16 +171,24 @@ public class Movement : MonoBehaviour
         var b = movementBounds.bounds;
         var pos = rb.position;
 
-        // For Rocket Boost, we typically care about horizontal area (X/Z),
-        // plus optionally a "ceiling" (max Y) to avoid hard bounces at the top.
-        float distToMinX = pos.x - b.min.x;
-        float distToMaxX = b.max.x - pos.x;
-        float distToMinZ = pos.z - b.min.z;
-        float distToMaxZ = b.max.z - pos.z;
+        // Important: don't kill all thrust when touching a side wall.
+        // If side walls reduce thrust, the rocket can lose altitude and "slide down" into a crash.
+        float scale = 1f;
+        if (softenCeiling)
+        {
+            float distToMaxY = b.max.y - pos.y;
+            scale = Mathf.Min(scale, Mathf.Clamp01(distToMaxY / soft));
+        }
+        if (softenSideWalls)
+        {
+            float distToMinX = pos.x - b.min.x;
+            float distToMaxX = b.max.x - pos.x;
+            float distToMinZ = pos.z - b.min.z;
+            float distToMaxZ = b.max.z - pos.z;
+            float nearestSide = Mathf.Min(distToMinX, distToMaxX, distToMinZ, distToMaxZ);
+            scale = Mathf.Min(scale, Mathf.Clamp01(nearestSide / soft));
+        }
 
-        float distToMaxY = b.max.y - pos.y;
-
-        float nearest = Mathf.Min(distToMinX, distToMaxX, distToMinZ, distToMaxZ, distToMaxY);
-        return Mathf.Clamp01(nearest / soft);
+        return scale;
     }
 }

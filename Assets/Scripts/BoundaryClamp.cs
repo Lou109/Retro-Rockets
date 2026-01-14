@@ -28,6 +28,11 @@ public class BoundaryClamp : MonoBehaviour
 
     Rigidbody rb;
 
+    public void SetBoundary(BoxCollider boundaryCollider)
+    {
+        boundary = boundaryCollider;
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
